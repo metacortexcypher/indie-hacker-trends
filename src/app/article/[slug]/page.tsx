@@ -85,86 +85,71 @@ const articles: Articles = {
   }
 };
 
-// Function to get async params
-async function getParams(params: { slug: string }) {
-  return params;
-}
-
-// Function to fetch article data
-async function getArticle(slug: string): Promise<Article | null> {
-  return articles[slug] || null;
-}
-
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const resolvedParams = await getParams(params);
-  const article = await getArticle(resolvedParams.slug);
+    const resolvedParams = await params;
+    const article = articles[resolvedParams.slug] || null;
+    
+    if (!article) {
+      return {
+        title: 'Article Not Found',
+      };
+    }
   
-  if (!article) {
     return {
-      title: 'Article Not Found',
+      title: article.title,
+      description: article.content.substring(0, 160),
     };
   }
-
-  return {
-    title: article.title,
-    description: article.content.substring(0, 160),
-  };
-}
-
-export async function generateStaticParams() {
-  return Object.keys(articles).map((slug) => ({
-    slug,
-  }));
-}
-
-// Article Page Component
-export default async function ArticlePage({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const resolvedParams = await getParams(params);
-  const article = await getArticle(resolvedParams.slug);
-
-  if (!article) {
+  
+  export async function generateStaticParams() {
+    return Object.keys(articles).map((slug) => ({
+      slug,
+    }));
+  }
+  
+  export default async function ArticlePage({ params }: { params: { slug: string } }) {
+    const resolvedParams = await params;
+    const article = articles[resolvedParams.slug] || null;
+  
+    if (!article) {
+      return (
+        <div className="min-h-screen grid-background">
+          <div className="max-w-3xl mx-auto px-4 py-12">
+            <h1 className="text-3xl font-bold">Article Not Found</h1>
+          </div>
+        </div>
+      );
+    }
+  
     return (
       <div className="min-h-screen grid-background">
-        <div className="max-w-3xl mx-auto px-4 py-12">
-          <h1 className="text-3xl font-bold">Article Not Found</h1>
-        </div>
+        <article className="max-w-3xl mx-auto px-4 py-12">
+          {/* Category and Date */}
+          <div className="text-sm font-serif uppercase tracking-wider mb-6">
+            {article.category} • {article.date}
+          </div>
+  
+          {/* Title */}
+          <h1 className="text-5xl font-bold mb-8 leading-tight">
+            {article.title}
+          </h1>
+  
+          {/* Content */}
+          <div className="prose prose-lg max-w-none">
+            {article.content.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="mb-6 leading-relaxed">
+                {paragraph.trim()}
+              </p>
+            ))}
+          </div>
+  
+          {/* Footer */}
+          <div className="mt-12 pt-6 border-t-2 border-black">
+            <p className="text-sm font-serif text-center">
+              IndieHacker Trends • The Distinguished Bootstrapper Daily Edition
+            </p>
+          </div>
+        </article>
       </div>
     );
   }
-
-  return (
-    <div className="min-h-screen grid-background">
-      <article className="max-w-3xl mx-auto px-4 py-12">
-        {/* Category and Date */}
-        <div className="text-sm font-serif uppercase tracking-wider mb-6">
-          {article.category} • {article.date}
-        </div>
-
-        {/* Title */}
-        <h1 className="text-5xl font-bold mb-8 leading-tight">
-          {article.title}
-        </h1>
-
-        {/* Content */}
-        <div className="prose prose-lg max-w-none">
-          {article.content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="mb-6 leading-relaxed">
-              {paragraph.trim()}
-            </p>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="mt-12 pt-6 border-t-2 border-black">
-          <p className="text-sm font-serif text-center">
-            IndieHacker Trends • The Distinguished Bootstrapper Daily Edition
-          </p>
-        </div>
-      </article>
-    </div>
-  );
-}

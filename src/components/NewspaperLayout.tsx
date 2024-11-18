@@ -50,7 +50,7 @@ const NewspaperLayout = () => {
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Masthead */}
       <header className="text-center mb-8">
-        <h5 className="newspaper-heading mb-4">
+        <h5 className="newspaper-brand-name mb-4">
           Indie Drama
         </h5>
         <h2 className="newspaper-heading mb-4">Because Youre Too Busy Pivoting to Keep Up</h2>
@@ -101,9 +101,9 @@ const NewspaperLayout = () => {
             </h3>
             <div className="divider-line" />
             <ul className="market-list">
-            <li>• Alex (@aliszu), founder of Uncoverlab, got her wisdom tooth removed. Speculation is going on that she is not the same anymore</li>
-              <li>•Levels io photoAI was cloned and forked by teens in just 7 days. Levelsio reposted the cloned product. </li>
-              <li>• Janu (@janubuilds), who once was a secret detective, is now building products and offering MVP services. </li>
+            <li>• <span>Alex (@aliszu)</span>, founder of Uncoverlab, got her wisdom tooth removed. Speculation is going on that she is not the same person anymore</li>
+              <li>•<span className='green'>Sandra djajic (@TakoTreba)</span>  broke up with Klu.so for unknown reasons. So whats next for her? </li>
+              <li>•<span className="blue">Janu (@janubuilds)</span> , who once was a secret detective, is now building products and offering MVP services. </li>
             </ul>
           </div>
 
