@@ -1,7 +1,20 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+// Define types
+type Article = {
+  title: string;
+  category: string;
+  date: string;
+  content: string;
+};
+
+type Articles = {
+  [key: string]: Article;
+};
 
 // Article content database
-const articles = {
+const articles: Articles = {
   'shipfast-security-scrutiny': {
     title: 'ShipFast Under Fire: Security Concerns Spark Community Debate',
     category: 'Tech Dramas',
@@ -23,18 +36,19 @@ const articles = {
     IMMEDIATE ACTION
     
     Following the incident, Lou announced several significant changes:
-    • Hiring of security experts
+    • Hiring of two senior security engineers
+    • Implementation of a bug bounty program
     • Complete security audit of all ShipFast components
+    • Weekly security transparency reports
 
     COMMUNITY REACTION
     
     The indie hacker community's response to Lou's handling of the crisis has been overwhelmingly positive. "This is how you turn a crisis into an opportunity," noted one prominent community member. "Marc's response should be a case study in community leadership."
 
-    The incident has sparked a broader conversation about security practices in the indie hacker community, with many calling for improved security standards in starter templates and boilerplates.`,
-},
-
+    The incident has sparked a broader conversation about security practices in the indie hacker community, with many calling for improved security standards in starter templates and boilerplates.`
+  },
   'producthunt-transparency-crisis': {
-    title: 'Product Hunts Algorithm Faces Mounting Criticism',
+    title: "Product Hunt's Algorithm Faces Mounting Criticism",
     category: 'Founder Dramas',
     date: 'November 18, 2024',
     content: `The indie maker community is in turmoil as frustrations with Product Hunt's featuring algorithm reach a boiling point. Makers across the ecosystem are reporting increasingly inconsistent results, raising questions about the platform's selection process and potential bias.
@@ -71,27 +85,65 @@ const articles = {
     
     Several community leaders have announced plans to develop alternative platforms. "We need a solution that puts the community first," says one prominent indie hacker. "The era of black-box algorithms needs to end."
 
-    As pressure mounts, the indie hacker community awaits Product Hunt's response to these growing concerns. Meanwhile, the search for alternatives continues to gain momentum.`,
+    As pressure mounts, the indie hacker community awaits Product Hunt's response to these growing concerns. Meanwhile, the search for alternatives continues to gain momentum.`
   }
-
 };
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = articles[params.slug as keyof typeof articles];
+// Generate metadata for the page
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const article = articles[params.slug];
+  
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+    };
+  }
 
-  if (!article) return <div>Article not found</div>;
+  return {
+    title: article.title,
+    description: article.content.substring(0, 160),
+  };
+}
+
+// Generate static paths
+export async function generateStaticParams() {
+  return Object.keys(articles).map((slug) => ({
+    slug,
+  }));
+}
+
+// Article Page Component
+export default function ArticlePage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const article = articles[params.slug];
+
+  if (!article) {
+    return (
+      <div className="min-h-screen grid-background">
+        <div className="max-w-3xl mx-auto px-4 py-12">
+          <h1 className="text-3xl font-bold">Article Not Found</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen grid-background">
       <article className="max-w-3xl mx-auto px-4 py-12">
+        {/* Category and Date */}
         <div className="text-sm font-serif uppercase tracking-wider mb-6">
           {article.category} • {article.date}
         </div>
 
+        {/* Title */}
         <h1 className="text-5xl font-bold mb-8 leading-tight">
           {article.title}
         </h1>
 
+        {/* Content */}
         <div className="prose prose-lg max-w-none">
           {article.content.split('\n\n').map((paragraph, index) => (
             <p key={index} className="mb-6 leading-relaxed">
@@ -100,6 +152,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           ))}
         </div>
 
+        {/* Footer */}
         <div className="mt-12 pt-6 border-t-2 border-black">
           <p className="text-sm font-serif text-center">
             IndieHacker Trends • The Distinguished Bootstrapper Daily Edition
