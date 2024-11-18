@@ -47,7 +47,7 @@ const InterestCaptureForm = () => {
         
         {status === 'success' ? (
           <div className="bg-green-50 border-2 border-green-500 p-4 text-green-700 font-serif">
-            Thank you for your interest! We will keep you posted about the drama.
+            Thank you for your interest! Hang in there.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -59,7 +59,7 @@ const InterestCaptureForm = () => {
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="your.name@telegraph.com" 
+                  placeholder="your.name@gmail.com" 
                   className="w-full p-2 border-2 border-black bg-white placeholder-gray-500
                            focus:ring-2 focus:ring-black focus:outline-none"
                   required
@@ -99,7 +99,7 @@ const InterestCaptureForm = () => {
         )}
 
         <p className="mt-4 text-sm font-serif text-gray-600">
-          * We promise to send you the juiciest indie drama straight to your inbox
+          * We promise to send you the juiciest indie drama straight to your inbox and also grab your free spot in our subscriber spotlight. <br />Your moment to shine awaits!
         </p>
       </div>
     </div>
