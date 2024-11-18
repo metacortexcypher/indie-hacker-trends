@@ -1,6 +1,7 @@
 import React from 'react';
 import ArticleCard from './ArticleCard';
 import Image from 'next/image';
+import InterestCaptureForm from './InterestCaptureForm';
 
 // Mock articles data
 const articles = [
@@ -88,6 +89,7 @@ const NewspaperLayout = () => {
               <ArticleCard key={article.slug} {...article} />
             ))}
           </div>
+          <InterestCaptureForm />
         </div>
 
         {/* Sidebar */}
@@ -113,7 +115,7 @@ const NewspaperLayout = () => {
       {/* Footer */}
       <footer className="mt-12 pt-4 border-t-2 border-black">
         <p className="text-center text-sm font-serif">
-          Est. 2024 • All Rights Not at all Reserved <br />I made this because i was bored ❤️ dont forget to enjoy!
+          Est. 2024 • All Rights Not at all Reserved <br /> Made by a memefied human ❤️ 
         </p>
       </footer>
     </div>

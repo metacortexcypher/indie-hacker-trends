@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 
-// Define types
 type Article = {
   title: string;
   category: string;
@@ -13,15 +12,12 @@ type Articles = {
   [key: string]: Article;
 };
 
-// Article content database
 const articles: Articles = {
   'shipfast-security-scrutiny': {
     title: 'ShipFast Under Fire: Security Concerns Spark Community Debate',
     category: 'Tech Dramas',
     date: 'November 18, 2024',
-    content: `In a dramatic turn of events, Marc Lou's highly popular ShipFast boilerplate found itself at the center of a security controversy when a group of ethical hackers publicly demonstrated several critical vulnerabilities in the platform's architecture.
-
-    The incident unfolded during a routine penetration testing session when security researchers discovered multiple entry points that could potentially expose user data. The findings were initially published on Twitter, causing immediate concern within the indie hacker community.
+    content: `In a dramatic turn of events, Marc Lou's highly popular ShipFast boilerplate found itself at the center of a security controversy when a group of ethical hackers publicly demonstrated several critical vulnerabilities in the platform's architecture.The incident unfolded during a routine penetration testing session when security researchers discovered multiple entry points that could potentially expose user data. The findings were initially published on Twitter, causing immediate concern within the indie hacker community.
 
     INITIAL RESPONSE
     
@@ -89,9 +85,19 @@ const articles: Articles = {
   }
 };
 
-// Generate metadata for the page
+// Function to get async params
+async function getParams(params: { slug: string }) {
+  return params;
+}
+
+// Function to fetch article data
+async function getArticle(slug: string): Promise<Article | null> {
+  return articles[slug] || null;
+}
+
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = articles[params.slug];
+  const resolvedParams = await getParams(params);
+  const article = await getArticle(resolvedParams.slug);
   
   if (!article) {
     return {
@@ -105,7 +111,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// Generate static paths
 export async function generateStaticParams() {
   return Object.keys(articles).map((slug) => ({
     slug,
@@ -113,12 +118,13 @@ export async function generateStaticParams() {
 }
 
 // Article Page Component
-export default function ArticlePage({
+export default async function ArticlePage({
   params,
 }: {
   params: { slug: string }
 }) {
-  const article = articles[params.slug];
+  const resolvedParams = await getParams(params);
+  const article = await getArticle(resolvedParams.slug);
 
   if (!article) {
     return (
