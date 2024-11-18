@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f5f5f5];
+  }
+}
+
+/* Grid background */
+.grid-background {
+  background-image: 
+    linear-gradient(to right, #e0e0e0 1px, transparent 1px),
+    linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.newspaper-heading {
+  @apply text-4xl font-bold tracking-tight leading-tight;
+}
+
+.newspaper-subheading {
+  @apply text-sm tracking-[0.2em] uppercase;
+}
+
+.divider-line {
+  @apply w-full h-[2px] bg-black;
+}
+
+/* Navigation styles */
+nav a {
+  @apply font-serif text-sm uppercase tracking-wider transition-all duration-200;
+}
+
+nav a:hover {
+  @apply transform -translate-y-[1px];
+}
+
+/* Article styles */
+.article-title {
+  @apply text-5xl font-bold leading-tight;
+}
+
+.article-text {
+  @apply text-lg leading-relaxed;
+}
+
+.article-text:first-letter {
+  @apply text-5xl font-bold float-left mr-2 mt-1;
+}
+
+/* Market section */
+.market-section {
+  @apply bg-white/50 p-6 shadow-sm border-2 border-black;
+}
+
+.market-list {
+  @apply space-y-4 mt-4 text-base;
+}
+
+/* Category sections */
+.category-section {
+  @apply border-t-2 border-black pt-4 mt-8;
+}
+
+/* Wanted poster effects */
+.wanted-poster {
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+  transform: rotate(1deg);
+}
+
+.wanted-poster:hover {
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease;
+}
