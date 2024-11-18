@@ -14,12 +14,13 @@ const InterestCaptureForm = () => {
     setStatus('loading');
   
     try {
+        const twitterHandle = formData.twitter.startsWith('@') ? formData.twitter.slice(1) : formData.twitter;
       const response = await fetch('/api/submit-interest', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email: formData.email, twitter: twitterHandle }),
       });
   
       if (!response.ok) {
