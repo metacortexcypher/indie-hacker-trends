@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
-const dataFilePath = path.join(__dirname, '..', '..', 'data', 'newsletter-subscribers.json');
+const dataFilePath = path.resolve(process.cwd(), 'data', 'newsletter-subscribers.json');
 
 export async function POST(request: Request) {
   try {
@@ -13,9 +13,10 @@ export async function POST(request: Request) {
     try {
       const fileData = await fs.readFile(dataFilePath, 'utf-8');
       data = JSON.parse(fileData);
-    } catch {
-      // If the file doesn't exist, create a new array
-      data = [];
+    } catch (err) {
+      if ((err as { code: string }).code !== 'ENOENT') {
+        throw err;
+      }
     }
 
     // Add the new data to the array

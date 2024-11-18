@@ -12,9 +12,9 @@ const InterestCaptureForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-  
+
     try {
-        const twitterHandle = formData.twitter.startsWith('@') ? formData.twitter.slice(1) : formData.twitter;
+      const twitterHandle = formData.twitter.startsWith('@') ? formData.twitter.slice(1) : formData.twitter;
       const response = await fetch('/api/submit-interest', {
         method: 'POST',
         headers: {
@@ -22,11 +22,11 @@ const InterestCaptureForm = () => {
         },
         body: JSON.stringify({ email: formData.email, twitter: twitterHandle }),
       });
-  
+
       if (!response.ok) {
         throw new Error('Submission failed');
       }
-  
+
       setStatus('success');
       setFormData({ email: '', twitter: '' });
     } catch (error) {
