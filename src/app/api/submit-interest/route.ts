@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
-const dataFilePath = path.join(__dirname, 'data', 'newsletter-subscribers.json');
+const dataFilePath = path.join('src', 'data', 'newsletter-subscribers.json');
 
 export async function POST(request: Request) {
   try {
