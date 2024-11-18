@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+
 // Article content database
 const articles = {
   'shipfast-security-scrutiny': {
