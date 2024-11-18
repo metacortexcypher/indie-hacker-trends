@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Playfair_Display } from 'next/font/google'
+import { Analytics } from "@vercel/analytics/react"
 
 // Initialize the font
 const playfair = Playfair_Display({ 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${playfair.className} grid-background antialiased`}>
         {children}
+        <Analytics/>
       </body>
     </html>
   );
