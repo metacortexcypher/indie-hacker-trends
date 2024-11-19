@@ -12,6 +12,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'IndieHacker Trends',
   description: 'The Distinguished Bootstrapper Daily Edition',
+  icons: {
+     icon: '/public/favicon.ico'
+  },
   openGraph: {
     title: 'The Juiciest content & stories from the Indie Hackers & Buildinpublic community',
     description: 'The Distinguished Bootstrapper Daily Edition',
