@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+
+
 const InterestCaptureForm = () => {
   const handleJoinClick = () => {
     window.open('https://tally.so/r/w5l2Qv', '_blank'); // Replace with your actual Tally form URL

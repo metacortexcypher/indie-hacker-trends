@@ -21,6 +21,7 @@ const articles = [
   }
 ];
 
+
 const WantedPoster = () => (
     <div className="border-4 border-black p-6 bg-[#f4e4bc] text-center transform rotate-1 hover:rotate-0 transition-transform duration-300">
       <div className="border-b-2 border-black pb-2 mb-4">
@@ -63,18 +64,30 @@ const NewspaperLayout = () => {
       <nav className="mb-8">
         <div className="divider-line" />
         <div className="py-3 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm font-serif">
-          <a href="#tech" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
+          <span className="tooltip-wrapper">
+          <span className="tooltip-content">Coming soon-ish... (maybe)</span>
+            <a href="#tech" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
             TECH DRAMAS
-          </a>
-          <a href="#founder" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
+            </a>
+          </span>
+          <span className="tooltip-wrapper"> 
+          <span className="tooltip-content" style={{left: 0, top: 0}}>We are prioritizing vibes over functionality right now.</span>
+            <a href="#founder" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
             FOUNDER TALES
-          </a>
-          <a href="#community" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
+            </a>
+          </span>
+          <span className="tooltip-wrapper">
+          <span className="tooltip-content">Feature in progress. We are bootstrapping, okay?</span>
+            <a href="#community" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
             COMMUNITY NEWS
-          </a>
-          <a href="#analysis" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
+            </a>
+          </span>
+          <span className="tooltip-wrapper">
+          <span className="tooltip-content">Click harder, maybe it will work</span>
+            <a href="#analysis" className="hover:bg-black hover:text-white px-2 py-1 transition-colors">
             DEEP ANALYSIS
-          </a>
+            </a>
+          </span>
         </div>
         <div className="divider-line" />
       </nav>
@@ -101,7 +114,7 @@ const NewspaperLayout = () => {
             </h3>
             <div className="divider-line" />
             <ul className="market-list">
-            <li>• <span>Alex (@aliszu)</span>, founder of Uncoverlab, got her wisdom tooth removed. Speculation is going on that she is not the same person anymore</li>
+            <li>• <span className="red">Alex (@aliszu)</span>, founder of Uncoverlab, got her wisdom tooth removed. Speculation is going on that she is not the same person anymore</li>
               <li>•<span className='green'>Sandra djajic (@TakoTreba)</span>  broke up with Klu.so for unknown reasons. So whats next for her? </li>
               <li>•<span className="blue">Janu (@janubuilds)</span> , who once was a secret detective, is now building products and offering MVP services. </li>
             </ul>

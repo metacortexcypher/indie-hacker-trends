@@ -113,7 +113,7 @@ nav a:hover {
   transform: rotate(-1deg);
   transition: transform 0.3s ease;
 }
-span{
+.red{
   color: red;
   font-weight: bold;
 }
@@ -124,4 +124,30 @@ span{
 
 .green{
   color: green;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  visibility: hidden;
+  width: 180px;
+  background-color: palegreen;
+  color: #333;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-wrapper:hover .tooltip-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
