@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'IndieHacker Trends',
   description: 'The Distinguished Bootstrapper Daily Edition',
   openGraph: {
-    title: 'IndieHacker Trends',
+    title: 'The Juiciest content & stories from the Indie Hackers & Buildinpublic community',
     description: 'The Distinguished Bootstrapper Daily Edition',
     url: 'https://www.theindiejuice.com',
     siteName: 'IndieHacker Trends',
