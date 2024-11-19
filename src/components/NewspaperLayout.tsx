@@ -98,9 +98,11 @@ const NewspaperLayout = () => {
         <div className="md:col-span-8">
           {/* Featured Articles */}
           <div className="space-y-12">
+            
             {articles.map(article => (
               <ArticleCard key={article.slug} {...article} />
             ))}
+            
           </div>
           <InterestCaptureForm />
         </div>
