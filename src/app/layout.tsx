@@ -12,7 +12,22 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'IndieHacker Trends',
   description: 'The Distinguished Bootstrapper Daily Edition',
+  openGraph: {
+    title: 'IndieHacker Trends',
+    description: 'The Distinguished Bootstrapper Daily Edition',
+    url: 'https://www.theindiejuice.com',
+    siteName: 'IndieHacker Trends',
+    images: [
+      {
+        url: '/boldog.png', // Replace with the path to your image file
+        width: 1200,
+        height: 630,
+        alt: 'IndieHacker Trends Open Graph Image',
+      },
+    ],
+  },
 }
+
 
 export default function RootLayout({
   children,
