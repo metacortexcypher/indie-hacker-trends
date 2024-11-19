@@ -3,7 +3,12 @@
 @import 'tailwindcss/utilities';
 
 
-
+@font-face {
+  font-family: 'Pattaya';
+  src: url('/assets/fonts/Pattaya-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 
 /* Grid background */
 .grid-background {
@@ -22,6 +27,11 @@
   ;
 }
 .newspaper-brand-name{
+  
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: orange ;
+  font-family: 'Pattaya', serif;
   font-size: 2rem;
   font-weight: bold;
   line-height: 0.25;

@@ -51,7 +51,7 @@ const NewspaperLayout = () => {
       {/* Masthead */}
       <header className="text-center mb-8">
         <h5 className="newspaper-brand-name mb-4">
-          Indie Drama
+          TheIndieJuice
         </h5>
         <h2 className="newspaper-heading mb-4">Because Youre Too Busy Pivoting to Keep Up</h2>
         <div className="newspaper-subheading mb-6">
