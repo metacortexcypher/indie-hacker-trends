@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${playfair.className} grid-background antialiased`}>
+      <body className={`${playfair.className}`}>
         {children}
         <Analytics/>
       </body>
